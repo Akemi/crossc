@@ -61,6 +61,16 @@ crossc_compiler *crossc_hlsl_create(const uint32_t *words, size_t word_count);
 // a ps_5_0 shader.
 void crossc_hlsl_set_shader_model(crossc_compiler *comp, int model);
 
+// Create a new instance of the compiler targeting MSL. words should point to
+// a valid SPIR-V binary, which is copied and parsed. After creation,
+// crossc_has_valid_program() should be called to check if the SPIR-V binary
+// was parsed correctly.
+crossc_compiler *crossc_msl_create(const uint32_t *words, size_t word_count);
+
+// Set the target MSL shader version.
+void crossc_msl_set_shader_version(crossc_compiler *comp, uint32_t major,
+                                   uint32_t minor, uint32_t patch);
+
 // Invert gl_Position.y. Only valid for a vertex shader.
 void crossc_set_flip_vert_y(crossc_compiler *comp, bool flip_vert_y);
 
